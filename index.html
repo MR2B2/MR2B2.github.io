@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小美</title>
+  <title>小美 | 专属纪念页</title>
   <!-- 引入Tailwind CSS（使用稳定CDN） -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- 引入Font Awesome（兼容旧浏览器） -->
@@ -18,6 +18,8 @@
             primary: '#FF69B4', // 主色调：柔和粉色
             secondary: '#E6E6FA', // 辅助色：浅紫色
             accent: '#FF85A2', // 强调色：深粉色
+            info: '#FFB6C1', // 信息卡片背景色
+            love: '#FF4080', // 情侣主题色
           },
         },
       }
@@ -36,6 +38,16 @@
       .fade-in {
         animation: fadeIn 1.5s ease-in-out;
       }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.15);
+      }
+      .count-animation {
+        animation: countUp 1.5s ease-out;
+      }
     }
     
     /* 修复动画兼容性，添加前缀 */
@@ -48,6 +60,11 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
+    @keyframes countUp {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <!-- 修复body布局，避免overflow:hidden导致滚动问题 -->
@@ -56,18 +73,59 @@
   <div class="absolute inset-0 -z-10 overflow-hidden">
     <div class="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-primary/10 rounded-full blur-3xl"></div>
     <div class="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-accent/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-2/3 left-2/3 w-56 h-56 md:w-72 md:h-72 bg-love/10 rounded-full blur-3xl"></div>
   </div>
   
   <!-- 主要内容：优化间距，避免溢出 -->
-  <div class="text-center fade-in w-full max-w-md">
+  <div class="text-center fade-in w-full max-w-2xl">
     <!-- 小美文字：优化响应式尺寸，避免超出屏幕 -->
-    <h1 class="text-[clamp(3rem,12vw,8rem)] font-bold text-primary breathing text-shadow mb-6">
+    <h1 class="text-[clamp(3rem,12vw,8rem)] font-bold text-primary breathing text-shadow mb-4">
       小美
     </h1>
     
+    <!-- 新增信息卡片区域（3列布局） -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 px-2">
+      <!-- 生日卡片 -->
+      <div class="bg-info/30 rounded-2xl p-4 card-hover">
+        <div class="flex items-center justify-center gap-3 text-primary">
+          <i class="fa fa-birthday-cake text-2xl"></i>
+          <span class="font-medium">生日</span>
+        </div>
+        <p class="text-xl font-semibold text-gray-700 mt-2">1999.09.24</p>
+      </div>
+      
+      <!-- 相识日期卡片 -->
+      <div class="bg-info/30 rounded-2xl p-4 card-hover">
+        <div class="flex items-center justify-center gap-3 text-primary">
+          <i class="fa fa-heart text-2xl"></i>
+          <span class="font-medium">相识</span>
+        </div>
+        <p class="text-xl font-semibold text-gray-700 mt-2">2025.09.15</p>
+      </div>
+      
+      <!-- 成为情侣卡片 -->
+      <div class="bg-love/30 rounded-2xl p-4 card-hover border border-love/20">
+        <div class="flex items-center justify-center gap-3 text-love">
+          <i class="fa fa-diamond text-2xl"></i>
+          <span class="font-medium">情侣纪念日</span>
+        </div>
+        <p class="text-xl font-semibold text-gray-700 mt-2">2025.11.09</p>
+      </div>
+    </div>
+    
+    <!-- 在一起天数统计卡片（单独一行，突出显示） -->
+    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 mb-8 card-hover border border-primary/10">
+      <div class="flex items-center justify-center gap-3 text-love mb-2">
+        <i class="fa fa-calendar-check-o text-2xl"></i>
+        <span class="font-medium text-lg">我们已经在一起</span>
+      </div>
+      <p class="text-[clamp(2.5rem,8vw,4rem)] font-bold text-love count-animation" id="loveDays">0</p>
+      <p class="text-gray-600 font-medium">天啦 ❤️</p>
+    </div>
+    
     <!-- 链接按钮：优化触摸区域，增强兼容性 -->
     <a href="https://example.com" 
-       class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+       class="inline-flex items-center gap-2 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
        target="_blank"
        rel="noopener noreferrer">
       <i class="fa fa-link"></i>
@@ -77,14 +135,55 @@
   
   <!-- 页脚：优化定位，避免遮挡内容 -->
   <footer class="mt-auto py-4 text-gray-500 text-sm opacity-70">
-    <p>© 2025 小美专属页面</p>
+    <p>© 2025 小美专属纪念页 | 爱意永不褪色</p>
   </footer>
   
-  <!-- 移除冗余脚本（原平滑滚动脚本无实际用途，导致无效报错） -->
+  <!-- 核心：计算在一起天数的脚本 -->
   <script>
-    // 仅保留必要的页面加载提示（可选）
+    // 情侣纪念日：2025年11月9日（固定日期）
+    const loveStartDate = new Date('2025-11-09');
+    
+    // 计算两个日期之间的天数差
+    function calculateLoveDays() {
+      const today = new Date();
+      // 只比较日期，忽略时间部分（避免当天不同时间导致计算偏差）
+      const start = new Date(loveStartDate.getFullYear(), loveStartDate.getMonth(), loveStartDate.getDate());
+      const end = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      
+      // 计算毫秒差，转换为天数（1天 = 24*60*60*1000毫秒）
+      const timeDiff = end - start;
+      const daysDiff = Math.max(0, Math.floor(timeDiff / (1000 * 3600 * 24)));
+      
+      return daysDiff;
+    }
+    
+    // 数字动画效果：从0逐步增加到目标值
+    function animateCount(element, target) {
+      let current = 0;
+      const step = Math.ceil(target / 30); // 30步完成动画，更流畅
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        element.textContent = current;
+      }, 30);
+    }
+    
+    // 页面加载时计算并显示天数
     window.addEventListener('load', () => {
-      console.log('页面加载完成！');
+      const loveDaysElement = document.getElementById('loveDays');
+      const days = calculateLoveDays();
+      animateCount(loveDaysElement, days);
+      
+      // 每天自动更新一次（可选，确保日期切换时自动刷新）
+      setInterval(() => {
+        const newDays = calculateLoveDays();
+        if (newDays !== parseInt(loveDaysElement.textContent)) {
+          animateCount(loveDaysElement, newDays);
+        }
+      }, 86400000); // 24小时 = 86400000毫秒
     });
   </script>
 </body>
