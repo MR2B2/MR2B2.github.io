@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小美</title>
+  <!-- 引入Tailwind CSS（使用稳定CDN） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome（兼容旧浏览器） -->
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- 简化Tailwind配置，避免配置冲突 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF69B4', // 主色调：柔和粉色
+            secondary: '#E6E6FA', // 辅助色：浅紫色
+            accent: '#FF85A2', // 强调色：深粉色
+          },
+        },
+      }
+    }
+  </script>
+  
+  <!-- 简化工具类，提升兼容性 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .breathing {
+        animation: breathing 3s ease-in-out infinite;
+      }
+      .fade-in {
+        animation: fadeIn 1.5s ease-in-out;
+      }
+    }
+    
+    /* 修复动画兼容性，添加前缀 */
+    @keyframes breathing {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<!-- 修复body布局，避免overflow:hidden导致滚动问题 -->
+<body class="bg-secondary min-h-screen flex flex-col items-center justify-center p-4">
+  <!-- 背景装饰优化：适配小屏幕 -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-accent/10 rounded-full blur-3xl"></div>
+  </div>
+  
+  <!-- 主要内容：优化间距，避免溢出 -->
+  <div class="text-center fade-in w-full max-w-md">
+    <!-- 小美文字：优化响应式尺寸，避免超出屏幕 -->
+    <h1 class="text-[clamp(3rem,12vw,8rem)] font-bold text-primary breathing text-shadow mb-6">
+      小美
+    </h1>
+    
+    <!-- 链接按钮：优化触摸区域，增强兼容性 -->
+    <a href="https://example.com" 
+       class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+       target="_blank"
+       rel="noopener noreferrer">
+      <i class="fa fa-link"></i>
+      <span>访问专属链接</span>
+    </a>
+  </div>
+  
+  <!-- 页脚：优化定位，避免遮挡内容 -->
+  <footer class="mt-auto py-4 text-gray-500 text-sm opacity-70">
+    <p>© 2025 小美专属页面</p>
+  </footer>
+  
+  <!-- 移除冗余脚本（原平滑滚动脚本无实际用途，导致无效报错） -->
+  <script>
+    // 仅保留必要的页面加载提示（可选）
+    window.addEventListener('load', () => {
+      console.log('页面加载完成！');
+    });
+  </script>
+</body>
+</html>
