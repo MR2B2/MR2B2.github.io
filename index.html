@@ -1,190 +1,1961 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小美 | 专属纪念页</title>
-  <!-- 引入Tailwind CSS（使用稳定CDN） -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- 引入Font Awesome（兼容旧浏览器） -->
-  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  
-  <!-- 简化Tailwind配置，避免配置冲突 -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#FF69B4', // 主色调：柔和粉色
-            secondary: '#E6E6FA', // 辅助色：浅紫色
-            accent: '#FF85A2', // 强调色：深粉色
-            info: '#FFB6C1', // 信息卡片背景色
-            love: '#FF4080', // 情侣主题色
-          },
-        },
-      }
-    }
-  </script>
-  
-  <!-- 简化工具类，提升兼容性 -->
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .text-shadow {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .breathing {
-        animation: breathing 3s ease-in-out infinite;
-      }
-      .fade-in {
-        animation: fadeIn 1.5s ease-in-out;
-      }
-      .card-hover {
-        transition: all 0.3s ease;
-      }
-      .card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.15);
-      }
-      .count-animation {
-        animation: countUp 1.5s ease-out;
-      }
-    }
-    
-    /* 修复动画兼容性，添加前缀 */
-    @keyframes breathing {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes countUp {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>郭梓涛 | 光储直柔设计总监</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gradient-1: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            --gradient-2: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            --gradient-3: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 5%;
+            background: rgba(15, 23, 42, 0.98);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 6rem 5% 4rem;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge i {
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+
+        /* Section通用样式 */
+        section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--dark-light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-image {
+            position: sticky;
+            top: 100px;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--gradient-1);
+            padding: 3px;
+        }
+
+        .about-image-inner {
+            background: var(--dark-light);
+            border-radius: 17px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .about-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .about-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-title {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .contact-item i {
+            width: 20px;
+            color: var(--primary);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .about-content h3 i {
+            color: var(--primary);
+        }
+
+        .about-text {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .about-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--dark);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--dark-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 450px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            top: 2rem;
+            right: -60px;
+            border: 4px solid var(--dark);
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            right: auto;
+            left: -60px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--gradient-1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--dark-light);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .skill-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-name {
+            font-weight: 500;
+        }
+
+        .skill-level {
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--dark);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--dark-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-date {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-spec {
+            padding: 0.3rem 0.8rem;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        .project-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-role {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        /* Awards Section */
+        .awards {
+            background: var(--dark-light);
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .award-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .award-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-2);
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .award-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            color: white;
+        }
+
+        .award-year {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .award-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-org {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .award-project {
+            font-size: 0.95rem;
+            color: var(--light);
+            font-style: italic;
+        }
+
+        /* Publications Section */
+        .publications {
+            background: var(--dark);
+        }
+
+        .pub-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .pub-item {
+            background: var(--dark-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .pub-item:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .pub-type {
+            min-width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: var(--gradient-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .pub-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .pub-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .pub-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .pub-meta i {
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark-light);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-desc {
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                position: relative;
+                top: 0;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+
+            .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 20px;
+                right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .about-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<!-- 修复body布局，避免overflow:hidden导致滚动问题 -->
-<body class="bg-secondary min-h-screen flex flex-col items-center justify-center p-4">
-  <!-- 背景装饰优化：适配小屏幕 -->
-  <div class="absolute inset-0 -z-10 overflow-hidden">
-    <div class="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-primary/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-accent/10 rounded-full blur-3xl"></div>
-    <div class="absolute top-2/3 left-2/3 w-56 h-56 md:w-72 md:h-72 bg-love/10 rounded-full blur-3xl"></div>
-  </div>
-  
-  <!-- 主要内容：优化间距，避免溢出 -->
-  <div class="text-center fade-in w-full max-w-2xl">
-    <!-- 小美文字：优化响应式尺寸，避免超出屏幕 -->
-    <h1 class="text-[clamp(3rem,12vw,8rem)] font-bold text-primary breathing text-shadow mb-4">
-      小美
-    </h1>
-    
-    <!-- 新增信息卡片区域（3列布局） -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 px-2">
-      <!-- 生日卡片 -->
-      <div class="bg-info/30 rounded-2xl p-4 card-hover">
-        <div class="flex items-center justify-center gap-3 text-primary">
-          <i class="fa fa-birthday-cake text-2xl"></i>
-          <span class="font-medium">生日</span>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">郭梓涛</div>
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#experience">职业经历</a></li>
+            <li><a href="#skills">专业技能</a></li>
+            <li><a href="#projects">项目案例</a></li>
+            <li><a href="#awards">荣誉奖项</a></li>
+            <li><a href="#publications">学术成果</a></li>
+            <li><a href="#contact">联系我</a></li>
+        </ul>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i>
+                <span>光储直柔领域技术</span>
+            </div>
+            <h1>
+                你好，我是<span class="highlight">郭梓涛</span>
+            </h1>
+            <p class="hero-subtitle">光储直柔设计总监 | 工程师职称 | 电力市场交易员 | 虚拟电厂开发</p>
+            <p class="hero-description">
+                致力于提供建筑综合电力能源解决方案，推动建筑能源系统的低碳化转型，
+          拥有近5年项目经验，主导多个国家级示范项目，获得法国设计奖金奖等多项荣誉。
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">年工作经验</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">完成项目</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5MW+</div>
+                    <div class="stat-label">光伏设计容量</div>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-briefcase"></i>
+                    查看项目
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    联系我
+                </a>
+            </div>
         </div>
-        <p class="text-xl font-semibold text-gray-700 mt-2">1999.09.24</p>
-      </div>
-      
-      <!-- 相识日期卡片 -->
-      <div class="bg-info/30 rounded-2xl p-4 card-hover">
-        <div class="flex items-center justify-center gap-3 text-primary">
-          <i class="fa fa-heart text-2xl"></i>
-          <span class="font-medium">相识</span>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
         </div>
-        <p class="text-xl font-semibold text-gray-700 mt-2">2025.09.15</p>
-      </div>
-      
-      <!-- 成为情侣卡片 -->
-      <div class="bg-love/30 rounded-2xl p-4 card-hover border border-love/20">
-        <div class="flex items-center justify-center gap-3 text-love">
-          <i class="fa fa-diamond text-2xl"></i>
-          <span class="font-medium">情侣纪念日</span>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <span class="section-tag">About Me</span>
+            <h2 class="section-title">关于我</h2>
+            <p class="section-subtitle">致力于提供建筑综合电力能源解决方案</p>
         </div>
-        <p class="text-xl font-semibold text-gray-700 mt-2">2025.11.09</p>
-      </div>
-    </div>
-    
-    <!-- 在一起天数统计卡片（单独一行，突出显示） -->
-    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 mb-8 card-hover border border-primary/10">
-      <div class="flex items-center justify-center gap-3 text-love mb-2">
-        <i class="fa fa-calendar-check-o text-2xl"></i>
-        <span class="font-medium text-lg">我们已经在一起</span>
-      </div>
-      <p class="text-[clamp(2.5rem,8vw,4rem)] font-bold text-love count-animation" id="loveDays">0</p>
-      <p class="text-gray-600 font-medium">天啦 ❤️</p>
-    </div>
-    
-    <!-- 链接按钮：优化触摸区域，增强兼容性 -->
-    <a href="https://example.com" 
-       class="inline-flex items-center gap-2 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
-       target="_blank"
-       rel="noopener noreferrer">
-      <i class="fa fa-link"></i>
-      <span>访问专属链接</span>
-    </a>
-  </div>
-  
-  <!-- 页脚：优化定位，避免遮挡内容 -->
-  <footer class="mt-auto py-4 text-gray-500 text-sm opacity-70">
-    <p>© 2025 小美专属纪念页 | 爱意永不褪色</p>
-  </footer>
-  
-  <!-- 核心：计算在一起天数的脚本 -->
-  <script>
-    // 情侣纪念日：2025年11月9日（固定日期）
-    const loveStartDate = new Date('2025-11-09');
-    
-    // 计算两个日期之间的天数差
-    function calculateLoveDays() {
-      const today = new Date();
-      // 只比较日期，忽略时间部分（避免当天不同时间导致计算偏差）
-      const start = new Date(loveStartDate.getFullYear(), loveStartDate.getMonth(), loveStartDate.getDate());
-      const end = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-      
-      // 计算毫秒差，转换为天数（1天 = 24*60*60*1000毫秒）
-      const timeDiff = end - start;
-      const daysDiff = Math.max(0, Math.floor(timeDiff / (1000 * 3600 * 24)));
-      
-      return daysDiff;
-    }
-    
-    // 数字动画效果：从0逐步增加到目标值
-    function animateCount(element, target) {
-      let current = 0;
-      const step = Math.ceil(target / 30); // 30步完成动画，更流畅
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        element.textContent = current;
-      }, 30);
-    }
-    
-    // 页面加载时计算并显示天数
-    window.addEventListener('load', () => {
-      const loveDaysElement = document.getElementById('loveDays');
-      const days = calculateLoveDays();
-      animateCount(loveDaysElement, days);
-      
-      // 每天自动更新一次（可选，确保日期切换时自动刷新）
-      setInterval(() => {
-        const newDays = calculateLoveDays();
-        if (newDays !== parseInt(loveDaysElement.textContent)) {
-          animateCount(loveDaysElement, newDays);
-        }
-      }, 86400000); // 24小时 = 86400000毫秒
-    });
-  </script>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="about-image-wrapper">
+                    <div class="about-image-inner">
+                        <div class="about-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 class="about-name">郭梓涛</h3>
+                        <p class="about-title">光储直柔设计总监</p>
+                        <div class="about-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>15707687477</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>1424849007@qq.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>广东深圳</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>东莞理工学院 · 自动化</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-content">
+                <h3><i class="fas fa-quote-left"></i> 职业理念</h3>
+                <p class="about-text">
+                    一名致力于<strong>提供建筑综合电力能源解决方案</strong>的工程师。
+                </p>
+                <p class="about-text">
+                     深耕建筑电力赛道，以专业破局，以跨界赋能，在双碳目标引领的能源转型浪潮中，践行从技术深耕到价值创造的进阶之路。
+                     从建筑电气设计师起步，以极致专业深耕细作，一年内跻身项目电气专业负责人，牵头把控电气设计核心环节，筑牢建筑电力安全与高效运行的根基，将技术规范与项目需求深度融合，用专业实力兑现每一份工程承诺。
+                <p class="about-text">
+                     顺应建筑能源低碳转型趋势，跨界深耕建筑光储直柔领域，实现从方案设计、施工图绘制，到设备一次设计、现场施工指导的全流程全栈贯通，精准契合光储直柔工程“安全高效、柔性灵活”的核心要求，推动分布式光伏、储能设施与建筑直流配电系统的协同落地，让绿色能源高效融入建筑全生命周期。
+                <p class="about-text">
+                     立足行业前沿，突破单一技术边界，转型建筑综合电力运营，兼顾能源高效利用与系统稳定管控；同时身兼电力交易员，紧扣电力市场化改革脉搏，精准研判市场动态，统筹建筑能源供需与交易优化，实现建筑电力“设计-建设-运营-交易”的闭环赋能，助力建筑从被动用电端向电网柔性参与者、绿电产消者转型。
+                <p class="about-text">
+                     不逐浮华，唯守匠心；不困边界，勇拓新局。以全栈技术为支撑，以跨界视野为引领，在建筑电力与能源交易的交叉领域，解锁建筑能源高效利用新路径，为双碳目标落地、新型电力系统构建注入专业力量。
+                
+                <div class="about-cards">
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>技术创新</h4>
+                        <p>授权1项发明专利，发表3篇学术论文，参与编制多项行业标准、工法</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>团队管理</h4>
+                        <p>光储直柔设计总监，带领团队完成多个国家级示范项目</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>行业认可</h4>
+                        <p>荣获法国设计奖金奖、广东省科学技术奖等多项荣誉</p>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="section-header">
+            <span class="section-tag">Experience</span>
+            <h2 class="section-title">职业经历</h2>
+            <p class="section-subtitle">从基础积累到管理提升的完整职业发展路径</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2024.07 - 至今</span>
+                    <h3 class="timeline-title">业务经理 / 光储直柔设计总监兼虚拟电厂产品经理</h3>
+                    <p class="timeline-company">中建科技集团（深圳）低碳能源有限公司</p>
+                    <p class="timeline-desc">
+                      <div class="stat-label">⭐️全面负责公司光储直柔设计团队管理，主导深圳建筑产业生态智谷总部基地等旗舰项目。</div>
+                     <div class="stat-label">⭐️完成公司首个售电资质办理，主导虚拟电厂运营商资质办理与聚合资源接入。</div>
+                      <div class="stat-label">⭐️参与行业标准制定和课题研究，推动技术创新和专利申请。</div>
+                        
+                      
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2023.07 - 2024.06</span>
+                    <h3 class="timeline-title">业务主管 / 光储直柔设计师兼产品经理</h3>
+                    <p class="timeline-company">中建科技集团有限公司</p>
+                    <p class="timeline-desc">
+                        <div class="stat-label">⭐️负责光储直柔项目设计和现场施工指导，主导同济大学长三角研究院光储直柔微网二期改造、深汕绿色产业园光储直柔微网二期改造、美锦氢能总部光氢直柔专项等项目。</div>
+                    <div class="stat-label">⭐️参与光储直柔关键设备研发，包括边缘控制器、四维能垣、电能网关等。</div>
+                  
+                  
+                    
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2022.06 - 2023.06</span>
+                    <h3 class="timeline-title">业务主管 / 光储直柔方案设计师</h3>
+                    <p class="timeline-company">中建科技集团有限公司</p>
+                    <p class="timeline-desc">
+                          <div class="stat-label">⭐️正式转型进入光储直柔领域，系统学习光储直柔技术体系</div>
+                          <div class="stat-label">⭐️参与深圳市住建局促进中心莲花大厦光储直柔改造项目、清华大学研究生院光储直柔实验室、接手中建科技科研产业基地等项目。</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2021.10 - 2022.06</span>
+                    <h3 class="timeline-title">电气专业负责人</h3>
+                    <p class="timeline-company">深圳壹创国际设计股份有限公司</p>
+                    <p class="timeline-desc">
+                        独立负责项目电气专业全流程设计，主导江西鹿鸣熙院、招商蛇口创业壹号等项目。
+                        获得助理工程师职称。
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2020.09 - 2021.09</span>
+                    <h3 class="timeline-title">电气助理设计师 / 电气设计师</h3>
+                    <p class="timeline-company">深圳壹创国际设计股份有限公司</p>
+                    <p class="timeline-desc">
+                        从零开始学习民用建筑电气设计，参与深圳市新华医院、联润大厦等大型公共建筑项目。
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="section-header">
+            <span class="section-tag">Skills</span>
+            <h2 class="section-title">专业技能</h2>
+            <p class="section-subtitle">光储直柔领域开拓者</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>光储直柔系统</h3>
+                </div>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">光伏系统设计</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">储能系统集成</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">直流配电设计</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">柔性用电控制</span>
+                            <span class="skill-level">金丹</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>建筑电气设计</h3>
+                </div>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">高低压配电系统</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">火灾自动报警系统</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">防雷接地系统</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">电气成本优化</span>
+                            <span class="skill-level">金丹</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>专业软件</h3>
+                </div>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">AutoCAD</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">PVsyst</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Revit / BIM</span>
+                            <span class="skill-level">筑基</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width:70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">ETAP</span>
+                            <span class="skill-level">筑基</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>项目管理</h3>
+                </div>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">技术团队管理</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">项目进度控制</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">跨部门协调</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">技术方案汇报</span>
+                            <span class="skill-level">元婴</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <span class="section-tag">Projects</span>
+            <h2 class="section-title">重点项目</h2>
+            <p class="section-subtitle">涵盖高校、研究院、办公楼、产业园、独栋别墅、片区楼盘等类型，从集团项目到国家级示范工程</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-building"></i>
+                    <span class="project-badge">重点项目</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-date">2024.04 - 至今</p>
+                    <h3 class="project-title">深圳建筑产业生态智谷总部基地</h3>
+                    <div class="project-specs">
+                        <span class="project-spec">1.5MW光伏</span>
+                        <span class="project-spec">540kWh储能</span>
+                        <span class="project-spec">37万㎡</span>
+                    </div>
+                    <p class="project-desc">
+                        位于龙岗大运深港国际科教城中部，是市委、市政府在龙岗布局的全市建筑业龙头项目，是实现建筑行业从生产型建造向绿色、智慧、服务型智能建造转型升级的关键举措。深圳市重点光储直柔示范工程，采用"光储直柔+建筑一体化"创新设计理念，实现建筑用能的柔性调节和优化配置。
+                    </p>
+                    <div class="project-role">
+                        <i class="fas fa-user-tie"></i>
+                        <span>光储直柔设计总监</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background: var(--gradient-2);">
+                    <i class="fas fa-flask"></i>
+                    <span class="project-badge">标杆项目</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-date">2022.08 - 至今</p>
+                    <h3 class="project-title">中建科技科研产业基地</h3>
+                    <div class="project-specs">
+                        <span class="project-spec">270kW光伏</span>
+                        <span class="project-spec">150kWh储能</span>
+                        <span class="project-spec">4.2万㎡</span>
+                    </div>
+                    <p class="project-desc">
+                        创新采用"直流母线与交流母线交叉"架构，实现办公、实验、生产分类柔性控制，入选“深圳市光储直柔优秀项目案例集”，系统综合效率达92%以上。
+                    </p>
+                    <div class="project-role">
+                        <i class="fas fa-user-tie"></i>
+                        <span>光储直柔设计总监</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background: var(--gradient-3);">
+                    <i class="fas fa-leaf"></i>
+                    <span class="project-badge">示范项目</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-date">2022.09 - 2023.06</p>
+                    <h3 class="project-title">莲花大厦光储直柔改造</h3>
+                    <div class="project-specs">
+                        <span class="project-spec">21.6kW光伏</span>
+                        <span class="project-spec">30.7MWh储能</span>
+                        <span class="project-spec">改造</span>
+                    </div>
+                    <p class="project-desc">
+                        深圳市既有建筑光储直柔改造示范工程，获评"深圳市工程建设科技示范项目"，入选“深圳市光储直柔优秀项目案例集”，改造后建筑能耗降低35%。
+                    </p>
+                    <div class="project-role">
+                        <i class="fas fa-user"></i>
+                        <span>设计负责人</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);">
+                    <i class="fas fa-atom"></i>
+                    <span class="project-badge">创新项目</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-date">2023.03 - 2023.07</p>
+                    <h3 class="project-title">美锦氢能总部基地光氢直柔</h3>
+                    <div class="project-specs">
+                        <span class="project-spec">热电联储</span>
+                        <span class="project-spec">光伏制氢</span>
+                        <span class="project-spec">750V直驱</span>
+                    </div>
+                    <p class="project-desc">
+                        创新将氢能系统融入光储直柔架构，实现"光-氢（储）-荷"多能互补，
+                        探索氢能在建筑领域的应用模式。
+                    </p>
+                    <div class="project-role">
+                        <i class="fas fa-user"></i>
+                        <span>设计负责人</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);">
+                    <i class="fas fa-home"></i>
+                    <span class="project-badge">零碳项目</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-date">2023.03 - 2023.12</p>
+                    <h3 class="project-title">广州方石养老院光储直柔</h3>
+                    <div class="project-specs">
+                        <span class="project-spec">光储直柔设计三星级</span>
+                       
+                        <span class="project-spec">养老建筑</span>
+                    </div>
+                    <p class="project-desc">
+                        住建部新建零碳建筑房车网互联案例，为养老建筑提供绿色能源解决方案，
+                        实现建筑运营碳中和。
+                    </p>
+                    <div class="project-role">
+                        <i class="fas fa-user"></i>
+                        <span>设计负责人</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);">
+                    <i class="fas fa-university"></i>
+                    <span class="project-badge">学术项目</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-date">2022.08 - 2023.04</p>
+                    <h3 class="project-title">清华大学国际研究生院实验室</h3>
+                    <div class="project-specs">
+                        <span class="project-spec">实验室</span>
+                        <span class="project-spec">高精度供电</span>
+                        <span class="project-spec">高校项目</span>
+                    </div>
+                    <p class="project-desc">
+                        满足实验室高精度供电需求的光储直柔设计，实现实验室设备的柔性用电管理，
+                        为高校科研提供稳定的绿色电力供应。
+                    </p>
+                    <div class="project-role">
+                        <i class="fas fa-user"></i>
+                        <span>设计负责人</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-building"></i>
+                    <span class="project-badge">重点项目</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-date">2022.06 - 至今</p>
+                    <h3 class="project-title">深汕合作区中建绿色产业园</h3>
+                    <div class="project-specs">
+                        <span class="project-spec">4.7MW光伏</span>
+                        <span class="project-spec">300kWh储能</span>
+                        <span class="project-spec">3000MWh能耗</span>
+                    </div>
+                    <p class="project-desc">
+                        一期配置直流负载总功率272kW（含照明、空调、充电桩等），储能系统200kW/300kWh；二期建成5MW屋顶分布式光伏（实际装机4.71MW），构建园区级交直混网。目前国内与"光储直柔"相关的已建、在建项目涵盖办公、商业、科教文卫、居住等多种建筑类型；已推广至片区级项目（广州白云安置房，分4批建设，周期2.5年）；入选国家发改委绿色技术推广目录（2024年版），并入选生态环境部应对气候变化年度报告，受到央视新闻联播等主流媒体专题报道。
+                    </p>
+                    <div class="project-role">
+                        <i class="fas fa-user-tie"></i>
+                        <span>光储直柔设计总监</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="awards" id="awards">
+        <div class="section-header">
+            <span class="section-tag">Awards</span>
+            <h2 class="section-title">荣誉奖项</h2>
+            <p class="section-subtitle">技术创新与行业认可的双重肯定</p>
+        </div>
+        <div class="awards-grid">
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <span class="award-year">2025</span>
+                <h3 class="award-title">法国设计奖金奖</h3>
+                <p class="award-org">法国设计奖组委会</p>
+                <p class="award-project">四维能垣 / 4D Integrated Energy Wall</p>
+            </div>
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <span class="award-year">2025</span>
+                <h3 class="award-title">广东省科学技术奖三等奖</h3>
+                <p class="award-org">广东省土木建筑学会</p>
+                <p class="award-project">基于光储直柔控制的房车互联微网技术</p>
+            </div>
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <span class="award-year">2023</span>
+                <h3 class="award-title">优秀设计师称号</h3>
+                <p class="award-org">低碳城公司</p>
+                <p class="award-project">年度优秀个人表彰</p>
+            </div>
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <span class="award-year">2023</span>
+                <h3 class="award-title">深圳市科技示范项目</h3>
+                <p class="award-org">深圳市住房和建设局</p>
+                <p class="award-project">莲花大厦光储直柔改造项目</p>
+            </div>
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <span class="award-year">2023</span>
+                <h3 class="award-title">住建部示范案例</h3>
+                <p class="award-org">住房和城乡建设部</p>
+                <p class="award-project">广州方石养老院光储直柔展厅</p>
+            </div>
+            <div class="award-card">
+                <div class="award-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <span class="award-year">2024</span>
+                <h3 class="award-title">全球首个运行的光储直柔项目</h3>
+                <p class="award-org">住房和城乡建设部</p>
+                <p class="award-project">深汕合作区中建绿色产业园</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="publications" id="publications">
+        <div class="section-header">
+            <span class="section-tag">Publications</span>
+            <h2 class="section-title">学术成果</h2>
+            <p class="section-subtitle">理论研究与技术创新的结晶</p>
+        </div>
+        <div class="pub-list">
+            <div class="pub-item">
+                <div class="pub-type">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="pub-content">
+                    <h4>深圳市工程建设施工工法-光储直柔配电系统施工工法</h4>
+                    <div class="pub-meta">
+                        <span><i class="fas fa-book"></i> 光储直柔</span>
+                        <span><i class="fas fa-user"></i> 主要完成人</span>
+                        <span><i class="fas fa-calendar"></i> 2025</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-type">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="pub-content">
+                    <h4>A Comparative Study on the Efficiency and Economic Performance of Distributed Photovoltaics in Buildings Using Low Voltage AC and Low Voltage DC Power Distribution Systems</h4>
+                    <div class="pub-meta">
+                        <span><i class="fas fa-book"></i> (EI收录)</span>
+                        <span><i class="fas fa-user"></i> 第一作者</span>
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-type">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="pub-content">
+                    <h4>应用光储直柔技术提升光储充系统转换效率的研究</h4>
+                    <div class="pub-meta">
+                        <span><i class="fas fa-book"></i> 建筑电气</span>
+                        <span><i class="fas fa-user"></i> 第一作者</span>
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-type">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="pub-content">
+                    <h4>Analysis and Prediction of Carbon Emission for Urban Building Sector in China: A Case Study in Shenzhen</h4>
+                    <div class="pub-meta">
+                        <span><i class="fas fa-book"></i> (EI收录)</span>
+                        <span><i class="fas fa-user"></i> 第五作者</span>
+                        <span><i class="fas fa-calendar"></i> 2023</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-type" style="background: var(--gradient-2);">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="pub-content">
+                    <h4>发明专利：一种光储直柔配电系统及其调控方法</h4>
+                    <div class="pub-meta">
+                        <span><i class="fas fa-certificate"></i> 专利号：ZL 2024 1 1865170.6</span>
+                        <span><i class="fas fa-user"></i> 主要发明人</span>
+                        <span><i class="fas fa-calendar"></i> 已授权</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <span class="section-tag">Contact</span>
+            <h2 class="contact-title">联系我</h2>
+            <p class="contact-desc">
+                如果您对光储直柔技术感兴趣，或者有项目合作意向，欢迎随时与我联系。
+                期待与您共同推动建筑能源系统的绿色转型！
+            </p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>电话</h4>
+                    <p>15707687477</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h4>邮箱</h4>
+                    <p>1424849007@qq.com</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>地址</h4>
+                    <p>广东省深圳市</p>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link" title="微信">
+                    <i class="fab fa-weixin"></i>
+                </a>
+                <a href="#" class="social-link" title="邮箱">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" class="social-link" title="电话">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">
+            © 2026 郭梓涛. All Rights Reserved.
+        </p>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // 技能条动画
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 100);
+                }
+            });
+        }, observerOptions);
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+
+        // 数字增长动画
+        const animateNumber = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.textContent.includes('+') ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '');
+                }
+            }, 30);
+        };
+
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.textContent);
+                    animateNumber(entry.target, target);
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        statNumbers.forEach(stat => statObserver.observe(stat));
+
+        // 移动端菜单
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
 </body>
 </html>
